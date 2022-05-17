@@ -7,9 +7,11 @@ public class EnemyFollow : MonoBehaviour
 {
     Transform player;
     NavMeshAgent nav;
+    GameObject playerObj;
     // Start is called before the first frame update
     void Start()
     {
+        playerObj = GameObject.Find("Player");
         player = GameObject.Find("Player").transform;
         nav = GetComponent<NavMeshAgent>();
     }
@@ -17,6 +19,17 @@ public class EnemyFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        nav.SetDestination(player.position);
+        if(playerObj.GetComponent<PlayerHealth>().hp > 0)
+        {
+            nav.isStopped = false;
+            nav.SetDestination(player.position);
+        }
+
+        else
+        {
+            nav.isStopped = true;
+        }
+        
+        
     }
 }

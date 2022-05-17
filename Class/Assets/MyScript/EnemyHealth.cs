@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class EnemyHealth : MonoBehaviour
 {
     int hp = 100;
+
     public void Damage(int amount)
     {
         if (hp <= 0)
@@ -14,16 +15,18 @@ public class EnemyHealth : MonoBehaviour
         if(hp<=0)
         {
             GetComponent<Animator>().SetTrigger("Death");
-            GetComponent<NavMeshAgent>().enabled = false;
+            GetComponent<NavMeshAgent>().isStopped = true;
 
             Destroy(gameObject,2);
             GameObject.Find("GameManager").GetComponent<Spawn>().count--;
         }
     }
+
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
