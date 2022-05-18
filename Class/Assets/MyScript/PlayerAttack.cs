@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
@@ -14,12 +14,13 @@ public class PlayerAttack : MonoBehaviour
         Ray ray = new Ray(shootPoint.position, shootPoint.forward);
         RaycastHit hit;
 
-        if(Physics.Raycast(ray, out hit, 100, LayerMask.GetMask("Shootable")))
+        if (Physics.Raycast(ray, out hit, 100, LayerMask.GetMask("Shootable")))
         {
             EnemyHealth e = hit.collider.GetComponent<EnemyHealth>();
-            if(e != null)
+            if (e != null)
             {
                 e.Damage(50);
+                Score.myScore += 10;
             }
 
             line.enabled = true;
@@ -45,13 +46,13 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if(CrossPlatformInputManager.GetButton("Fire1") && timer >= 0.2f)
+        if (CrossPlatformInputManager.GetButton("Fire1") && timer >= 0.2f)
         {
             timer = 0;
             Shoot();
         }
 
-        if(timer > 0.05f)
+        if (timer > 0.05f)
         {
             line.enabled = false;
         }
