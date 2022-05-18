@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -19,17 +19,14 @@ public class EnemyFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(playerObj.GetComponent<PlayerHealth>().hp > 0)
+        if (playerObj.GetComponent<PlayerHealth>().hp > 0)
         {
-            nav.isStopped = false;
             nav.SetDestination(player.position);
         }
 
         else
         {
-            nav.isStopped = true;
+            nav.SetDestination(gameObject.transform.position);
         }
-        
-        
     }
 }

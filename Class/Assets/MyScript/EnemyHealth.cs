@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -12,26 +12,26 @@ public class EnemyHealth : MonoBehaviour
         if (hp <= 0)
             return;
         hp -= amount;
-        if(hp<=0)
+        if (hp <= 0)
         {
             GetComponent<Animator>().SetTrigger("Death");
             GetComponent<NavMeshAgent>().isStopped = true;
 
-            Destroy(gameObject,2);
+            Destroy(gameObject, 2);
             GameObject.Find("GameManager").GetComponent<Spawn>().count--;
         }
     }
 
-    
+
     // Start is called before the first frame update
     void Start()
     {
-       
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
